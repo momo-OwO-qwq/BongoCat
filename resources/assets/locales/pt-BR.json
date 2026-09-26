@@ -14,6 +14,7 @@
           "modelSettings": "Modelo",
           "gamepadFourHands": "Modo de quatro mãos no controle",
           "dynamicTextureResolution": "Desativar resolução dinâmica de texturas",
+          "renderQuality": "Qualidade do modelo (%)",
           "mirrorMode": "Modo Espelho",
           "verticalFlip": "Pendurado de Cabeça para Baixo",
           "mouseVerticalFlip": "Inverter Mouse Verticalmente",
@@ -30,6 +31,7 @@
           "opacity": "Opacidade",
           "randomExpression": "Expressões Aleatórias",
           "randomMotion": "Movimentos Aleatórios",
+          "randomAudio": "Áudio aleatório",
           "secondsUnit": "s",
           "obsBackground": "Fundo sólido",
           "hideOnHover": "Ocultar ao Passar o Mouse",
@@ -38,6 +40,7 @@
         },
         "hints": {
           "dynamicTextureResolution": "Ajusta automaticamente a resolução das texturas ao tamanho real de exibição, preservando os detalhes visuais e otimizando o uso da memória de vídeo. Em geral, não é recomendado ativar esta opção. Você pode deixar o interruptor na configuração padrão.",
+          "renderQuality": "Experimente níveis diferentes para encontrar o melhor equilíbrio visual e economizar memória.",
           "hoverRequires": "Ative as opções [Passagem de cliques] e [Sempre no Topo] acima.",
           "hoverUnavailable": "Ocultar ao passar o mouse não está disponível no ambiente de desktop atual.",
           "gamepadFourHands": "Mantém duas mãos extras visíveis no modo controle. A aparência depende do modelo",

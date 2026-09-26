@@ -14,6 +14,7 @@
           "modelSettings": "Modell",
           "gamepadFourHands": "Vierhandmodus am Gamepad",
           "dynamicTextureResolution": "Dynamische Texturauflösung deaktivieren",
+          "renderQuality": "Modellqualität (%)",
           "mirrorMode": "Spiegelmodus",
           "verticalFlip": "Kopfüber hängen",
           "mouseVerticalFlip": "Maus vertikal spiegeln",
@@ -30,6 +31,7 @@
           "opacity": "Deckkraft",
           "randomExpression": "Zufällige Ausdrücke",
           "randomMotion": "Zufällige Bewegungen",
+          "randomAudio": "Zufälliges Audio",
           "secondsUnit": "s",
           "obsBackground": "Einfarbiger Hintergrund",
           "hideOnHover": "Beim Darüberfahren ausblenden",
@@ -38,6 +40,7 @@
         },
         "hints": {
           "dynamicTextureResolution": "Passt die Texturauflösung automatisch an die tatsächliche Anzeigegröße an, um Bilddetails zu erhalten und gleichzeitig die Grafikspeichernutzung zu optimieren. Es wird generell davon abgeraten, diese Option zu aktivieren. Sie können den Schalter einfach auf der Standardeinstellung belassen.",
+          "renderQuality": "Verschiedene Stufen ausprobieren, um die beste visuelle Balance zu finden und Speicher zu sparen.",
           "hoverRequires": "Die obigen Optionen [Klickdurchlässigkeit] und [Immer im Vordergrund] müssen aktiviert sein.",
           "hoverUnavailable": "Ausblenden bei Mausberührung ist in dieser Desktop-Umgebung nicht verfügbar.",
           "gamepadFourHands": "Im Gamepad-Modus bleiben zwei zusätzliche Hände sichtbar. Das Aussehen hängt vom Modell ab",

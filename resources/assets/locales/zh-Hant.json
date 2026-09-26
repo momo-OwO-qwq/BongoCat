@@ -14,6 +14,7 @@
           "modelSettings": "模型",
           "gamepadFourHands": "手把四手模式",
           "dynamicTextureResolution": "關閉動態紋理解析度",
+          "renderQuality": "模型渲染品質 (%)",
           "mirrorMode": "鏡像模式",
           "verticalFlip": "倒掛模式",
           "mouseMirror": "滑鼠左右反轉",
@@ -39,6 +40,7 @@
         },
         "hints": {
           "dynamicTextureResolution": "根據實際顯示尺寸自適應調整紋理精度，在維持畫面細節的同時，最佳化顯示記憶體使用量。一般情況下不建議開啟，預設保持開關開閉即可",
+          "renderQuality": "調整數值以取得視覺效果與顯示記憶體占用的平衡。",
           "hoverRequires": "需要同時開啟上面的[滑鼠穿透]和[置頂]選項",
           "hoverUnavailable": "目前桌面環境暫不支援滑鼠移入隱藏。",
           "gamepadFourHands": "在手把模式下常駐顯示額外兩隻手，四手一起玩！實際效果依模型而定",

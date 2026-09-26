@@ -14,6 +14,7 @@
           "modelSettings": "モデル",
           "gamepadFourHands": "ゲームパッド4本の手モード",
           "dynamicTextureResolution": "動的テクスチャ解像度を無効にする",
+          "renderQuality": "モデル品質 (%)",
           "mirrorMode": "ミラーモード",
           "verticalFlip": "逆さ吊りモード",
           "mouseVerticalFlip": "マウス上下反転",
@@ -30,6 +31,7 @@
           "opacity": "不透明度",
           "randomExpression": "ランダム表情",
           "randomMotion": "ランダムモーション",
+          "randomAudio": "ランダム音声",
           "secondsUnit": "秒",
           "obsBackground": "単色背景",
           "hideOnHover": "ホバー時に非表示",
@@ -38,6 +40,7 @@
         },
         "hints": {
           "dynamicTextureResolution": "実際の表示サイズに合わせてテクスチャ解像度を自動調整し、画面の細部を維持しながらビデオメモリの使用量を最適化します。通常、このオプションをオンにすることは推奨しません。スイッチはデフォルトの設定のままで構いません。",
+          "renderQuality": "数値を変えて、見た目のバランスとメモリ使用量の最適な点を探しましょう。",
           "hoverRequires": "上にある[クリック透過]と[最前面表示]を両方有効にしてください。",
           "hoverUnavailable": "現在のデスクトップ環境では、マウスを重ねて非表示にする機能は利用できません。",
           "gamepadFourHands": "ゲームパッドモードで追加の2本の手を常に表示します。見た目はモデルによって異なります",

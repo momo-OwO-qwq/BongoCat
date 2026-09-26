@@ -14,6 +14,7 @@
           "modelSettings": "Modèle",
           "gamepadFourHands": "Mode quatre mains à la manette",
           "dynamicTextureResolution": "Désactiver la résolution dynamique des textures",
+          "renderQuality": "Qualité du modèle (%)",
           "mirrorMode": "Mode miroir",
           "verticalFlip": "Suspendre la tête en bas",
           "mouseVerticalFlip": "Inverser la souris verticalement",
@@ -30,6 +31,7 @@
           "opacity": "Opacité",
           "randomExpression": "Expressions aléatoires",
           "randomMotion": "Mouvements aléatoires",
+          "randomAudio": "Audio aléatoire",
           "secondsUnit": "s",
           "obsBackground": "Arrière-plan uni",
           "hideOnHover": "Masquer au survol",
@@ -38,6 +40,7 @@
         },
         "hints": {
           "dynamicTextureResolution": "Adapte automatiquement la résolution des textures à la taille réelle d’affichage, tout en préservant les détails visuels et en optimisant l’utilisation de la mémoire vidéo. Il est généralement déconseillé d’activer cette option. Vous pouvez laisser le bouton sur son réglage par défaut.",
+          "renderQuality": "Essayez différents niveaux pour trouver le meilleur équilibre visuel tout en économisant de la mémoire.",
           "hoverRequires": "Activez les options [Passage des clics] et [Toujours au premier plan] ci-dessus.",
           "hoverUnavailable": "Le masquage au survol est indisponible dans cet environnement de bureau.",
           "gamepadFourHands": "Affiche en permanence deux mains supplémentaires en mode manette. Le rendu dépend du modèle",
