@@ -220,6 +220,9 @@ jobs:
           - os: ubuntu-24.04
             platform: linux-x64
             cmake_arch: ''
+          - os: ubuntu-24.04-arm
+            platform: linux-arm64
+            cmake_arch: ''
           - os: macos-15-intel
             platform: macos-x64
             cmake_arch: x86_64
@@ -282,6 +285,9 @@ jobs:
         include:
           - os: ubuntu-24.04
             platform: linux-x64
+            cmake_arch: ''
+          - os: ubuntu-24.04-arm
+            platform: linux-arm64
             cmake_arch: ''
           - os: macos-15-intel
             platform: macos-x64
@@ -364,6 +370,29 @@ jobs:
           retention-days: 30
           compression-level: 0
           # Preserve package ZIPs inside the artifact transport archive.
+          archive: true
+
+      - name: Package Debian release
+        id: deb-package
+        if: runner.os == 'Linux'
+        timeout-minutes: 5
+        shell: pwsh
+        run: |
+          cmake --build build-package --target package-deb
+          if ($LASTEXITCODE -ne 0) { throw 'Debian packaging failed' }
+          $deb = Get-Item build-package/dist/*.deb
+          bash ./.github/scripts/check-deb.sh $deb.FullName '${{ matrix.platform }}'
+          "file=$($deb.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
+      - name: Upload Debian release
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v7
+        with:
+          name: bongocat-vt-${{ matrix.platform }}-deb-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ steps.deb-package.outputs.file }}
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
           archive: true
 
   store-package:

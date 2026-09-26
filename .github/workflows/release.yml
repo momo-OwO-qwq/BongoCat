@@ -42,6 +42,9 @@ jobs:
           - os: ubuntu-22.04
             platform: linux-x64
             cmake_arch: ''
+          - os: ubuntu-22.04-arm
+            platform: linux-arm64
+            cmake_arch: ''
           - os: macos-15-intel
             platform: macos-x64
             cmake_arch: x86_64
@@ -164,7 +167,7 @@ jobs:
 
       - name: Package Unix release
         if: runner.os != 'Windows'
-        timeout-minutes: 5
+        timeout-minutes: 8
         shell: pwsh
         run: |
           $name = (Get-Content build-release/bongocat-package-name.txt -Raw).Trim()
@@ -207,6 +210,16 @@ jobs:
             $appimageHash = (Get-FileHash $appimage -Algorithm SHA256).Hash.ToLowerInvariant()
             "$appimageHash  $($appimage.Name)" | Set-Content "$($appimage.FullName).sha256" -Encoding ascii
             Copy-Item -LiteralPath $appimage.FullName, "$($appimage.FullName).sha256" -Destination release-output
+          }
+
+          if ('${{ matrix.platform }}'.StartsWith('linux-')) {
+            cmake --build build-release --target package-deb
+            if ($LASTEXITCODE -ne 0) { throw 'Debian packaging failed' }
+            $deb = Get-Item build-release/dist/*.deb
+            bash ./.github/scripts/check-deb.sh $deb.FullName '${{ matrix.platform }}'
+            $debHash = (Get-FileHash $deb -Algorithm SHA256).Hash.ToLowerInvariant()
+            "$debHash  $($deb.Name)" | Set-Content "$($deb.FullName).sha256" -Encoding ascii
+            Copy-Item -LiteralPath $deb.FullName, "$($deb.FullName).sha256" -Destination release-output
           }
 
       - name: Upload packaged release
@@ -302,6 +315,7 @@ jobs:
           }
           $unixArchives = @{
             'linux-x64' = 'tar.gz'
+            'linux-arm64' = 'tar.gz'
             'macos-x64' = 'zip'
             'macos-arm64' = 'zip'
           }
@@ -312,6 +326,11 @@ jobs:
           }
           $files += "release-output/BongoCat-$version-linux-x64.AppImage"
           $files += "release-output/BongoCat-$version-linux-x64.AppImage.sha256"
+          foreach ($platform in 'linux-x64', 'linux-arm64') {
+            $deb = "release-output/BongoCat-$version-$platform.deb"
+            $files += $deb
+            $files += "$deb.sha256"
+          }
           foreach ($file in $files) {
             if (-not (Test-Path -LiteralPath $file -PathType Leaf)) {
               throw "Release is incomplete: $file"
@@ -358,6 +377,9 @@ jobs:
             - [macOS Intel](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/BongoCat-${{ steps.version.outputs.version }}-macos-x64.zip)
             - [Linux x64](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/BongoCat-${{ steps.version.outputs.version }}-linux-x64.tar.gz)
             - [Linux x64 AppImage](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/BongoCat-${{ steps.version.outputs.version }}-linux-x64.AppImage)
+            - [Linux x64 (Debian package)](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/BongoCat-${{ steps.version.outputs.version }}-linux-x64.deb)
+            - [Linux arm64](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/BongoCat-${{ steps.version.outputs.version }}-linux-arm64.tar.gz)
+            - [Linux arm64 (Debian package)](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/BongoCat-${{ steps.version.outputs.version }}-linux-arm64.deb)
 
           generate_release_notes: true
           fail_on_unmatched_files: true
@@ -368,3 +390,4 @@ jobs:
             release-output/*.zip
             release-output/*.tar.gz
             release-output/*.AppImage
+            release-output/*.deb

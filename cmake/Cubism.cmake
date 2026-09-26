@@ -29,10 +29,28 @@ elseif(APPLE)
   set(CUBISM_CORE_LIBRARY
     "${CUBISM_CORE_PATH}/lib/macos/${CUBISM_ARCH}/libLive2DCubismCore.a")
 else()
-  set(CUBISM_CORE_LIBRARY
-    "${CUBISM_CORE_PATH}/lib/linux/x86_64/libLive2DCubismCore.a")
+  if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm64|aarch64|ARM64)$")
+    set(CUBISM_CORE_LIBRARY_CANDIDATES
+      "${CUBISM_CORE_PATH}/lib/linux/arm64/libLive2DCubismCore.a"
+      "${CUBISM_CORE_PATH}/lib/linux/aarch64/libLive2DCubismCore.a"
+      "${CUBISM_CORE_PATH}/lib/experimental/linux/ARM64/libLive2DCubismCore.a")
+  else()
+    set(CUBISM_CORE_LIBRARY_CANDIDATES
+      "${CUBISM_CORE_PATH}/lib/linux/x86_64/libLive2DCubismCore.a")
+  endif()
+  set(CUBISM_CORE_LIBRARY "")
+  foreach(CUBISM_CORE_CANDIDATE IN LISTS CUBISM_CORE_LIBRARY_CANDIDATES)
+    if(EXISTS "${CUBISM_CORE_CANDIDATE}")
+      set(CUBISM_CORE_LIBRARY "${CUBISM_CORE_CANDIDATE}")
+      break()
+    endif()
+  endforeach()
 endif()
 if(NOT EXISTS "${CUBISM_CORE_LIBRARY}")
+  if(CUBISM_CORE_LIBRARY_CANDIDATES)
+    message(FATAL_ERROR "Cubism Core library missing; expected one of: "
+      "${CUBISM_CORE_LIBRARY_CANDIDATES}")
+  endif()
   message(FATAL_ERROR "Cubism Core library missing: ${CUBISM_CORE_LIBRARY}")
 endif()
 set_target_properties(Live2DCubismCore PROPERTIES

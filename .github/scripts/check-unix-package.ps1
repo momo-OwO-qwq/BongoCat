@@ -2,7 +2,7 @@
 param(
     [Parameter(Mandatory = $true)][string]$Archive,
     [Parameter(Mandatory = $true)]
-    [ValidateSet('linux-x64', 'macos-x64', 'macos-arm64')][string]$Platform,
+    [ValidateSet('linux-x64', 'linux-arm64', 'macos-x64', 'macos-arm64')][string]$Platform,
     [switch]$SkipSmoke
 )
 
