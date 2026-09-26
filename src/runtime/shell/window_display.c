@@ -178,7 +178,12 @@ static bool fit_to_display(BongoCatApp *app, SDL_DisplayID display,
 }
 
 void bongo_cat_window_clamp_to_display(BongoCatApp *app) {
+    /* Clamping is currently a no-op, but the display helpers above stay
+       referenced so the behaviour can be restored without silencing
+       -Wunused-function (GCC/Clang build with -Werror). */
     (void)app;
+    (void)available_displays_cover;
+    (void)target_display;
 }
 
 void bongo_cat_window_drag_to(BongoCatApp *app, int x, int y) {
